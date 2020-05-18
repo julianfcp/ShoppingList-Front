@@ -8,6 +8,7 @@ export default class Home extends Component {
             <div>
                 <Navbar />
                 <h4 className="componentTitle">Currently At Home</h4>
+                <h1>Excelente!</h1>
                 <CurrentList />
             </div>
         )
