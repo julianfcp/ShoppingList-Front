@@ -8,7 +8,7 @@ export default class index extends Component {
             <div>
                 <Navbar />
                 <h4 className="componentTitle">{this.props.match.params.listId}</h4>  
-                <CurrentList />
+                <CurrentList inicialItems={[]}/>
             </div>
         )
     }

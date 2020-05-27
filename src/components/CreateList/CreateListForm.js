@@ -6,7 +6,7 @@ export default class CreateListForm extends Component {
     
     createItemsComponent = () => {
         if(this.props.nameList.length !== 0)
-        return <CurrentList />
+        return <CurrentList inicialItems={[]}/>
     }
 
     render() {
