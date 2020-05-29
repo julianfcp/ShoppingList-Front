@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import { Form, FormGroup, Label, Input, Container, Row, Col, ListGroup, ListGroupItem } from 'reactstrap';
 
@@ -6,7 +7,8 @@ export default class CurrentList extends Component {
     constructor(props){
         super(props);
         this.state = {
-            newItem: '',
+            newItem: {  "itemName": "",
+                        "itemStatus": ""},
             data : [],
             checked: []
         }
@@ -51,20 +53,33 @@ export default class CurrentList extends Component {
         }
     }
     // handle if user press enter on input
-    handleEnter = (e) => {
+    handleEnter = async (e) => {
         this.setState({
-            newItem: e.target.value
+            newItem: {
+                "itemName": e.target.value,
+                "itemStatus": "Active"
+            }
         })
         if(e.key === 'Enter') {
-            console.log('do validate');
+            console.log('Enter pressed', this.state.newItem.itemName);
             // reset the input and store data
             if(e.target.value !== ''){
                 this.setState({
-                    newItem: ''
+                    newItem: {
+                        "itemName": "",
+                        "itemStatus": ""
+                    }
                 });
                 // store inputs into an array
-                // ++ Should add this to Data Base
                 this.state.data.push(e.target.value);
+                // store input into the Database
+                await axios.post('http://localhost:4000/api/currentList', this.state.newItem)
+                                .then(function(res){
+                                    console.log(res)
+                                })
+                                .catch(function(error){
+                                    console.log(error)
+                                });
             }
             
         }
@@ -89,7 +104,7 @@ export default class CurrentList extends Component {
                 <Container>
                     <Row>
                         <Col>
-                            <Input type="text" placeholder="Add Item" onKeyDown={this.handleEnter} onChange={this.handleEnter} value={this.state.newItem}/>
+                            <Input type="text" placeholder="Add Item" onKeyDown={this.handleEnter} onChange={this.handleEnter} value={this.state.newItem.itemName}/>
                         </Col>
                     </Row>
                     <Row>
