@@ -16,14 +16,28 @@ export default class CurrentList extends Component {
         // this allows me to call any function from inside a callback
          // that is defined in this class. Otherwise youll get a type error
         window.component = this;
-        console.log(this.props.inicialItems);
-        const dataResp = this.props.inicialItems.map(item => (
-            item.itemName
-        ));
-        this.setState({
-            data: dataResp
-        })
+        this.getInitialValues();
     }
+
+    getInitialValues = () => {
+        const dataRespActive = [];  
+        const dataRespChecked = [];       
+        this.props.inicialItems.map(item => {
+            if(item.itemStatus === 'Active'){
+                dataRespActive.push(item.itemName);
+            } else if (item.itemStatus === 'Checked') {
+                dataRespChecked.push(item.itemName);
+            }
+            return ''
+        });
+
+        this.setState({
+            data: dataRespActive,
+            checked: dataRespChecked
+        })
+        
+    }
+
     activeItemsTitle = () => {
         if (this.state.data.length !== 0){
             return <span className="mb-3 mt-3">Active Items</span>
