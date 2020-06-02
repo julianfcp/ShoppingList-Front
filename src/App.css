@@ -20,3 +20,7 @@ a, a:hover {
 .modalNameList {
     margin-top: 15% !important;
 }
+/** icons styles **/
+.trashCan {
+    float: right !important;
+}
