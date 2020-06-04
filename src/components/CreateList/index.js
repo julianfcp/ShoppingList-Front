@@ -2,18 +2,36 @@ import React, { Component } from 'react';
 import Navbar from '../Navbar/';
 import CreateListForm from './CreateListForm';
 import ModalListName from './ModalListName';
+import axios from 'axios';
+
+
 export default class CreateList extends Component {
     constructor(props) {
         super(props);
         this.state={
-            listName: ""
+            listName: {
+                "listName": "",
+                "listStatus": ""
+            }
         }
     }
 
-    setListName = (name) => {
+    setListName = async (name) => {
+        const newList = {
+            "listName": name,
+            "listStatus": 'Active'
+        }
+        await axios.post('http://localhost:4000/api/lists', newList)
+                .then(function(res){ 
+                    console.log(res.data.listInfo)
+                })
+                .catch(function(error){
+                    console.log(error)
+                });
         this.setState({
-            listName: name
+            listName:newList
         });
+        
     }
 
 

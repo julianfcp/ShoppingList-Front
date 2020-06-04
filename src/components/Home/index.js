@@ -10,12 +10,13 @@ const Home = () => {
     const [state, setState] = useState('loading');
     const [data, setData] = useState('');
 
+    /*************************************************************************************** */
+    /*                  These are the Methods of Current List Child                          */
+    /*************************************************************************************** */
     const getCurrentListItems = async () =>  {
         //const res = await axios.get('https://xvdhu.sse.codesandbox.io/api/currentList');
         const res = await axios.get('http://localhost:4000/api/currentList');
         setData(res.data);
-
-        console.log("I was called");
 
         if(res.data.length !== 0) {
             return true;
@@ -24,6 +25,25 @@ const Home = () => {
             return false;
         }
         
+    }
+    const createCurrentListItem = async (item) => {
+        await axios.post('http://localhost:4000/api/currentList', item)
+                    .then(function(res){ 
+                        console.log(res)
+                    })
+                    .catch(function(error){
+                        console.log(error)
+                    });
+    }
+
+    const deleteCurrentItem = async (id) => {
+        await axios.delete('http://localhost:4000/api/currentList/'+id)
+                    .then(function(res){
+                        console.log(res);
+                    })
+                    .catch(function(error){
+                        console.log(error)
+                    });
     }
 
     const updateCheckedItem = async (itemId, itemName) => {
@@ -54,6 +74,8 @@ const Home = () => {
                         console.log(error)
                     });
     }
+    /*************************************************************************************** */
+    /*************************************************************************************** */
 
     useEffect(() => {
         (async function() {
@@ -81,6 +103,8 @@ const Home = () => {
                 updateValues={getCurrentListItems} 
                 updateCheckedItem={updateCheckedItem}
                 updateCheckedItemToActive={updateCheckedItemToActive}
+                createItem={createCurrentListItem}
+                deleteItem={deleteCurrentItem}
                 inicialItems={data}
             />
         </div>

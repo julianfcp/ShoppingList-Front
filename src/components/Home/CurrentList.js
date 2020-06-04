@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import { Form, FormGroup, Label, Input, Container, Row, Col, ListGroup, ListGroupItem } from 'reactstrap';
@@ -20,21 +19,17 @@ export default class CurrentList extends Component {
         // this allows me to call any function from inside a callback
          // that is defined in this class. Otherwise youll get a type error
         window.component = this;
-        // Get the initial items to render
-        this.getInitialValues();
+        this.getInitialValues();// Get the initial items to render
     }
 
     getInitialValues = async () => {
-        // get items in case they were updated
-        await this.props.updateValues();
-        console.log(this.props.inicialItems);
-        // set the data state
-        this.setState({
+        await this.props.updateValues();// get items in case they were updated
+        this.setState({// set the data state
             data: this.props.inicialItems
         })
         
     }
-
+    // Sets the title in case there were active items
     activeItemsTitle = () => {
         if (this.state.data.find(item => item.itemStatus === 'Active')){
             return <span className="mb-3 mt-3">Active Items</span>
@@ -42,6 +37,7 @@ export default class CurrentList extends Component {
             return <span className="mb-3 mt-3">You don't have Active Items!</span>
         }
     }
+    // Sets the title in case there were checked items
     checkedItemsTitle = () => {
         if(this.state.data.find(item => item.itemStatus === 'Checked')){
             return <span className="mb-3 mt-3">Checked Items</span>
@@ -62,13 +58,7 @@ export default class CurrentList extends Component {
             // reset the input and store data
             if(e.target.value !== ''){
                 // store input into the Database
-                await axios.post('http://localhost:4000/api/currentList', this.state.newItem)
-                            .then(function(res){ 
-                                console.log(res)
-                            })
-                            .catch(function(error){
-                                console.log(error)
-                            });
+                await this.props.createItem(this.state.newItem);
                 // reset the item so the input is cleared
                 this.setState({
                     newItem: {
@@ -76,47 +66,30 @@ export default class CurrentList extends Component {
                         "itemStatus": ""
                     }
                 });
-
-                await this.props.updateValues();
+                // Reset the initial values to render
                 this.getInitialValues();
             }
             
         }
     }
 
+    // When active item checkbox is pressed
     handleCheckbox = async (itemId,itemName) => {
-        console.log("item checked " + itemId);
-        
-        /*this.state.checked.push(e.target.value);
-        const index = this.state.data.indexOf(e.target.value);
-        console.log(index);
-        // This erase item from data and reload the render
-        this.setState({
-            data: this.state.data.filter((_, i) => i !== index),
-          });
-        console.log(this.state.data2);*/
-        // here I should update the database....
-
-       
+        // Updates the item status to 'Checked'  
         await this.props.updateCheckedItem(itemId, itemName);
         this.getInitialValues();
 
     }
+    // When checked item checkbox is pressed
     handleCheckboxToActive = async (itemId, itemName) => {
-        console.log("item checked " + itemId);
+        // Updates the item status to 'Active' 
         await this.props.updateCheckedItemToActive(itemId, itemName);
         this.getInitialValues();
     }
-
+    // Deletes an item
     deleteItem =  async (id) => {
         console.log(id);
-        await axios.delete('http://localhost:4000/api/currentList/'+id)
-                    .then(function(res){
-                        console.log(res);
-                    })
-                    .catch(function(error){
-                        console.log(error)
-                    });
+        await this.props.deleteItem(id);
         await this.props.updateValues();
         this.getInitialValues();
         
