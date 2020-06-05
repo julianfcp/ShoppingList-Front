@@ -24,13 +24,17 @@ export default class CurrentList extends Component {
 
     getInitialValues = async () => {
         await this.props.updateValues();// get items in case they were updated
-        this.setState({// set the data state
-            data: this.props.inicialItems
-        })
+        if(this.props.inicialItems) {
+            this.setState({// set the data state
+                data: this.props.inicialItems
+            })
+        }
+        
         
     }
     // Sets the title in case there were active items
     activeItemsTitle = () => {
+        console.log(this.state.data);
         if (this.state.data.find(item => item.itemStatus === 'Active')){
             return <span className="mb-3 mt-3">Active Items</span>
         } else {

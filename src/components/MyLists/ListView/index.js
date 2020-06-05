@@ -16,19 +16,33 @@ const ListView = (props) => {
 
     const getListItems = async () =>  {
         //const res = await axios.get('https://xvdhu.sse.codesandbox.io/api/currentList');
-        const res = await axios.get('http://localhost:4000/api/currentList');
-        setData(res.data);
 
-        if(res.data.length !== 0) {
-            return true;
-        }else{
-            setData('')
-            return false;
-        }
+        await axios.get('http://localhost:4000/api/listItems', {
+            params: {
+                listId: props.match.params.listId
+            }
+          }).then(res => {
+            console.log("respuesta: "+res.data.items);
+            setData(res.data.items);
+            if(res.data.items.length !== 0) {
+                return true;
+            }else{
+                setData('')
+                return false;
+            }
+          })
+
+        
         
     }
     const createListItem = async (item) => {
-        await axios.post('http://localhost:4000/api/currentList', item)
+        console.log(item);
+        const newitem = {
+            itemName: item.itemName,
+            itemStatus: item.itemStatus,
+            listId: props.match.params.listId
+        }
+        await axios.post('http://localhost:4000/api/listItems', newitem)
                     .then(function(res){ 
                         console.log(res)
                     })
@@ -38,7 +52,7 @@ const ListView = (props) => {
     }
 
     const deleteListItem = async (id) => {
-        await axios.delete('http://localhost:4000/api/currentList/'+id)
+        await axios.delete('http://localhost:4000/api/listItems/'+id)
                     .then(function(res){
                         console.log(res);
                     })
@@ -80,13 +94,13 @@ const ListView = (props) => {
 
     useEffect(() => {
         (async function() {
-        try {
-            const isDataloaded = await getListItems();
-            setState(isDataloaded ? 'dataloaded' : 'redirect');
-        }
-        catch {
-            setState('redirect');
-        }
+            try {
+                const isDataloaded = await getListItems();
+                setState(isDataloaded ? 'dataloaded' : 'redirect');
+            }
+            catch {
+                setState('redirect');
+            }
         })();
     }, []);
 
