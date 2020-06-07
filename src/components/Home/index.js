@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from 'axios';
 import Navbar from '../Navbar/';
 import CurrentList from './CurrentList';
@@ -7,7 +7,7 @@ import CurrentList from './CurrentList';
 const Home = () => {
 
     /* Track the state of your app instead. Start with a "loading" state */
-    const [state, setState] = useState('loading');
+    //const [state, setState] = useState('loading');
     const [data, setData] = useState('');
 
     /*************************************************************************************** */
@@ -16,9 +16,8 @@ const Home = () => {
     const getCurrentListItems = async () =>  {
         //const res = await axios.get('https://xvdhu.sse.codesandbox.io/api/currentList');
         const res = await axios.get('http://localhost:4000/api/currentList');
-        setData(res.data);
-
         if(res.data.length !== 0) {
+            setData(res.data);
             return true;
         }else{
             setData('')
@@ -77,7 +76,7 @@ const Home = () => {
     /*************************************************************************************** */
     /*************************************************************************************** */
 
-    useEffect(() => {
+   /* useEffect(() => {
         (async function() {
         try {
             const isDataloaded = await getCurrentListItems();
@@ -91,9 +90,9 @@ const Home = () => {
 
     /* If in loading state, return loading message while waiting for 
     isValidToken to complete */
-    if(state === 'loading') {
+/*if(state === 'loading') {
         return <div>Loading..</div>
-    }
+    }*/
 
     return (
         <div>

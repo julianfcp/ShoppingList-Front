@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState  } from "react";
 import axios from 'axios';
 import Navbar from '../../Navbar/';
 import CurrentList from '../../Home/CurrentList';
@@ -7,7 +7,7 @@ import ListName from './ListName';
 const ListView = (props) => {
 
     /* Track the state of your app instead. Start with a "loading" state */
-    const [state, setState] = useState('loading');
+    //const [state, setState] = useState('');
     const [data, setData] = useState('');
 
     /*************************************************************************************** */
@@ -23,11 +23,10 @@ const ListView = (props) => {
             }
           }).then(res => {
             console.log("respuesta: "+res.data.items);
-            setData(res.data.items);
             if(res.data.items.length !== 0) {
+                setData(res.data.items);
                 return true;
             }else{
-                setData('')
                 return false;
             }
           })
@@ -66,8 +65,9 @@ const ListView = (props) => {
             "itemName": itemName,
             "itemStatus": "Checked"
         };
+        console.log(itemId);
 
-        await axios.put('http://localhost:4000/api/currentList/'+itemId, itemToUpdate)
+        await axios.put('http://localhost:4000/api/listItems/'+itemId, itemToUpdate)
                     .then(function(res){ 
                         console.log(res)
                     })
@@ -81,7 +81,7 @@ const ListView = (props) => {
             "itemName": itemName,
             "itemStatus": "Active"
         };
-        await axios.put('http://localhost:4000/api/currentList/'+itemId, itemToUpdate)
+        await axios.put('http://localhost:4000/api/listItems/'+itemId, itemToUpdate)
                     .then(function(res){ 
                         console.log(res)
                     })
@@ -92,7 +92,7 @@ const ListView = (props) => {
     /*************************************************************************************** */
     /*************************************************************************************** */
 
-    useEffect(() => {
+    /*useEffect(() => {
         (async function() {
             try {
                 const isDataloaded = await getListItems();
@@ -102,13 +102,13 @@ const ListView = (props) => {
                 setState('redirect');
             }
         })();
-    }, []);
+    }, []);*/
 
     /* If in loading state, return loading message while waiting for 
     isValidToken to complete */
-    if(state === 'loading') {
+   /* if(state === 'loading') {
         return <div>Loading..</div>
-    }
+    }*/
 
     return (
         <div>
