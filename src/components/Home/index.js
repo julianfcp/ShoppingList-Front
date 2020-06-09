@@ -4,12 +4,11 @@ import Navbar from '../Navbar/';
 import CurrentList from './CurrentList';
 
 
-const Home = () => {
+const Home = (props) => {
 
     /* Track the state of your app instead. Start with a "loading" state */
     //const [state, setState] = useState('loading');
     const [data, setData] = useState('');
-
     /*************************************************************************************** */
     /*                  These are the Methods of Current List Child                          */
     /*************************************************************************************** */
@@ -96,7 +95,7 @@ const Home = () => {
 
     return (
         <div>
-            <Navbar />
+            <Navbar userId={props.userId}/>
             <h4 className="componentTitle">Currently At Home</h4>
             <CurrentList 
                 updateValues={getCurrentListItems} 

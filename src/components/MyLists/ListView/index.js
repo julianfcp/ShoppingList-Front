@@ -22,7 +22,6 @@ const ListView = (props) => {
                 listId: props.match.params.listId
             }
           }).then(res => {
-            console.log("respuesta: "+res.data.items);
             if(res.data.items.length !== 0) {
                 setData(res.data.items);
                 return true;
@@ -35,7 +34,6 @@ const ListView = (props) => {
         
     }
     const createListItem = async (item) => {
-        console.log(item);
         const newitem = {
             itemName: item.itemName,
             itemStatus: item.itemStatus,

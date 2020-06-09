@@ -34,7 +34,6 @@ export default class CurrentList extends Component {
     }
     // Sets the title in case there were active items
     activeItemsTitle = () => {
-        console.log(this.state.data);
         if (this.state.data.find(item => item.itemStatus === 'Active')){
             return <span className="mb-3 mt-3">Active Items</span>
         } else {
