@@ -21,16 +21,24 @@ export default class CreateList extends Component {
             "listName": name,
             "listStatus": 'Active'
         }
+        var listId;
         await axios.post('http://localhost:4000/api/lists', newList)
                 .then(function(res){ 
-                    console.log(res.data.listInfo)
+                    listId = res.data.listInfo._id;
+                    console.log(res.data.listInfo._id+" Saved")
                 })
                 .catch(function(error){
                     console.log(error)
                 });
         this.setState({
-            listName:newList
+            listName: {
+                "listName": name,
+                "listStatus": "",
+                "listId": listId
+            }
         });
+        // executes child method
+        this.refs.CreateListForm.getListItems();
         
     }
 
@@ -38,9 +46,9 @@ export default class CreateList extends Component {
     render() {
         return (
             <div>
-                <Navbar />
+                <Navbar userId={this.props.userId}/>
                 <ModalListName handleListName={this.setListName}/>                
-                <CreateListForm nameList={this.state.listName}/>
+                <CreateListForm nameList={this.state.listName} ref="CreateListForm"/>
             </div>
         )
     }

@@ -110,7 +110,7 @@ const ListView = (props) => {
 
     return (
         <div>
-            <Navbar />
+            <Navbar userId={props.userId}/>
             <ListName listName={props.match.params.listId}/>
             <CurrentList 
                 updateValues={getListItems} 

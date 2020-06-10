@@ -4,7 +4,7 @@ import Navbar from '../Navbar/';
 import Lists from './Lists';
 
 
-const MyLists = () => {
+const MyLists = (props) => {
 
     /* Track the state of your app instead. Start with a "loading" state */
     const [state, setState] = useState('loading');
@@ -56,7 +56,7 @@ const MyLists = () => {
     } else {
         return (
             <div>
-                <Navbar />
+                <Navbar userId={props.userId}/>
                 <br />
                 <h4 className="mt-5">No Lists has been created!</h4>
             </div>

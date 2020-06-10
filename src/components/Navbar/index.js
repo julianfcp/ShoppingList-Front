@@ -46,9 +46,6 @@ export default class Navbar extends Component {
                             <div className="appTitle">
                                 <h2>Shopping List</h2>
                             </div>
-                            <div>
-                                <span>Hello {this.props.userId} !</span>
-                            </div>
                         </Link>
                         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
@@ -60,6 +57,9 @@ export default class Navbar extends Component {
                                 <li><Link id="" className="nav-link" to="/MyLists">My lists</Link></li>
                                 <li><Link id="" className="nav-link" to="/" onClick={this.handleLogout}><b>Logout</b></Link></li>
                             </ul>
+                        </div>
+                        <div>
+                            <small>Hello {this.props.userId} !</small>
                         </div>
                     </div>
                 </nav> 

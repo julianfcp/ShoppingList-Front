@@ -18,9 +18,9 @@ function App() {
         <Route path="/login" exact component={Login} />
         <Route path="/signup" exact component={Signup} />
         <PrivateRoute path="/" exact component={Home}/>
-        <Route path="/CreateList" exact component={CreateList} />
-        <Route path="/MyLists" exact component={Mylists} />
-        <Route path="/MyLists/:listId" exact component={ListView} />
+        <PrivateRoute path="/CreateList" exact component={CreateList} />
+        <PrivateRoute path="/MyLists" exact component={Mylists} />
+        <PrivateRoute path="/MyLists/:listId" exact component={ListView} />
       </Switch>
       </div>
     </Router>
