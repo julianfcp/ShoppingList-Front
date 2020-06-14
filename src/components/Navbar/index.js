@@ -4,8 +4,8 @@ import Cookie from 'js-cookie';
 import { Link } from 'react-router-dom';
 
 export default class Navbar extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
             data: {}
         }
@@ -54,7 +54,7 @@ export default class Navbar extends Component {
                             <ul className="navbar-nav ml-auto">
                                 <li><Link id="" className="nav-link" to="/">Home</Link></li>
                                 <li><Link id="" className="nav-link" to="/CreateList">Create List</Link></li>
-                                <li><Link id="" className="nav-link" to="/MyLists">My lists</Link></li>
+                                <li><Link id="" className="nav-link" to="/GroceryList">Grocery List</Link></li>
                                 <li><Link id="" className="nav-link" to="/" onClick={this.handleLogout}><b>Logout</b></Link></li>
                             </ul>
                         </div>

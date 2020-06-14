@@ -1,7 +1,7 @@
 import React, { useState  } from "react";
 import axios from 'axios';
 import Navbar from '../../Navbar/';
-import CurrentList from '../../Home/CurrentList';
+import CurrentList from '../../GroceryList/CurrentList';
 import ListName from './ListName';
 
 const ListView = (props) => {

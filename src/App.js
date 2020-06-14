@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute';
 import Login from './components/User/login';
 import Signup from './components/User/signup';
-import Home from './components/Home/';
+import Home from './components/GroceryList';
 import CreateList from './components/CreateList/';
 import Mylists from './components/MyLists/';
 import ListView from './components/MyLists/ListView';
@@ -17,10 +17,11 @@ function App() {
       <Switch>
         <Route path="/login" exact component={Login} />
         <Route path="/signup" exact component={Signup} />
-        <PrivateRoute path="/" exact component={Home}/>
-        <PrivateRoute path="/CreateList" exact component={CreateList} />
-        <PrivateRoute path="/MyLists" exact component={Mylists} />
+        <PrivateRoute path="/" exact component={Mylists}/>
         <PrivateRoute path="/MyLists/:listId" exact component={ListView} />
+        <PrivateRoute path="/CreateList" exact component={CreateList} />
+        <PrivateRoute path="/GroceryList" exact component={Home} />
+        
       </Switch>
       </div>
     </Router>

@@ -49,7 +49,7 @@ const MyLists = (props) => {
     if(data !== ''){
         return (
             <div>
-                <Navbar />
+                <Navbar userId={props.userId}/>
                 <Lists myLists={data}/>
             </div>
         )

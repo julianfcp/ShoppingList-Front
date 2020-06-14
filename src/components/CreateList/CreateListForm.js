@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Container } from 'reactstrap';
-import CurrentList from '../Home/CurrentList';
+import CurrentList from '../GroceryList/CurrentList';
 
 export default class CreateListForm extends Component {
     constructor(props){
