@@ -11,6 +11,7 @@ export default class Navbar extends Component {
         }
     }
 
+
     handleLogout = async () => {
         try {
             const res = await axios({
@@ -40,11 +41,11 @@ export default class Navbar extends Component {
     render() {
         return (
             <div>
-                <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top ">
+                <nav className="navbar navbar-expand-lg navbar-light fixed-top shadow-sm p-3 mb-3">
                     <div className="container">
                         <Link className="navbar-brand" to="/">
                             <div className="appTitle">
-                                <h2>Shopping List</h2>
+                                <small>Hello {this.props.userName} !</small>
                             </div>
                         </Link>
                         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,9 +58,6 @@ export default class Navbar extends Component {
                                 <li><Link id="" className="nav-link" to="/GroceryList">Grocery List</Link></li>
                                 <li><Link id="" className="nav-link" to="/" onClick={this.handleLogout}><b>Logout</b></Link></li>
                             </ul>
-                        </div>
-                        <div>
-                            <small>Hello {this.props.userId} !</small>
                         </div>
                     </div>
                 </nav> 

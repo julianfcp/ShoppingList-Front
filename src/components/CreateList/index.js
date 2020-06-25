@@ -19,6 +19,7 @@ export default class CreateList extends Component {
     setListName = async (name) => {
         const newList = {
             "listName": name,
+            "userId": this.props.userId,
             "listStatus": 'Active'
         }
         var listId;
@@ -46,7 +47,7 @@ export default class CreateList extends Component {
     render() {
         return (
             <div>
-                <Navbar userId={this.props.userId}/>
+                <Navbar userId={this.props.userId} userName={this.props.userName}/>
                 <ModalListName handleListName={this.setListName}/>                
                 <CreateListForm nameList={this.state.listName} ref="CreateListForm"/>
             </div>

@@ -3,6 +3,9 @@ import axios from 'axios';
 import Navbar from '../../Navbar/';
 import CurrentList from '../../GroceryList/CurrentList';
 import ListName from './ListName';
+import ListDescription from './ListDescription';
+import ListInstructions from './ListInstructions';
+
 
 const ListView = (props) => {
 
@@ -110,8 +113,11 @@ const ListView = (props) => {
 
     return (
         <div>
-            <Navbar userId={props.userId}/>
+            <Navbar userId={props.userId} userName={props.userName}/>
             <ListName listName={props.match.params.listId}/>
+            <hr />
+            <ListDescription />
+            <ListInstructions />
             <CurrentList 
                 updateValues={getListItems} 
                 updateCheckedItem={updateCheckedItem}
@@ -120,6 +126,7 @@ const ListView = (props) => {
                 deleteItem={deleteListItem}
                 inicialItems={data}
             />
+            
         </div>
     );
 };

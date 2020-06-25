@@ -9,9 +9,12 @@ a, a:hover {
     padding: 15px;
     margin: auto;
     height: 100%;
+    background-color: lightgray;
   }
   /**************************************/
-
+.navbar {
+    background-color: lightgray !important;
+}
 .appTitle {
     text-decoration: none;
 }
@@ -32,4 +35,8 @@ a, a:hover {
 /** icons styles **/
 .trashCan {
     float: right !important;
+}
+
+.textDescription {
+    width: 100%;
 }

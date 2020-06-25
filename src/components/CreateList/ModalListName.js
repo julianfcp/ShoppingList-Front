@@ -41,7 +41,10 @@ const ModalListName = (props) => {
             <Form>
             <ModalBody>
                 <FormGroup>
-                <Input name="nameList" onChange={onChange} onKeyDown={handleEnter} placeholder="List Name"></Input>
+                  <Input name="nameList" onChange={onChange} onKeyDown={handleEnter} placeholder="List Name"></Input>
+                </FormGroup>
+                <FormGroup>
+                  <Input type="textarea" name="description" placeholder="Description"></Input>
                 </FormGroup> 
             </ModalBody>
             <ModalFooter>

@@ -95,7 +95,7 @@ const Home = (props) => {
 
     return (
         <div>
-            <Navbar userId={props.userId}/>
+            <Navbar userId={props.userId} userName={props.userName}/>
             <h4 className="componentTitle">Currently At Home</h4>
             <CurrentList 
                 updateValues={getCurrentListItems} 

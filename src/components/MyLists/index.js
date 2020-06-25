@@ -3,7 +3,6 @@ import axios from 'axios';
 import Navbar from '../Navbar/';
 import Lists from './Lists';
 
-
 const MyLists = (props) => {
 
     /* Track the state of your app instead. Start with a "loading" state */
@@ -14,7 +13,6 @@ const MyLists = (props) => {
     /*                  These are the Methods of Lists Child                          */
     /*************************************************************************************** */
     const getLists = async () =>  {
-        //const res = await axios.get('https://xvdhu.sse.codesandbox.io/api/currentList');
         const res = await axios.get('http://localhost:4000/api/lists');
         setData(res.data);
 
@@ -49,7 +47,7 @@ const MyLists = (props) => {
     if(data !== ''){
         return (
             <div>
-                <Navbar userId={props.userId}/>
+                <Navbar userId={props.userId} userName={props.userName}/>
                 <Lists myLists={data}/>
             </div>
         )

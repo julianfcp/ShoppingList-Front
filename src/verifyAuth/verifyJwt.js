@@ -14,8 +14,8 @@ const getSession = async () => {
             
         });
         if(res.data.success) {
-            console.log("true");
-            return {success: true, userId: res.data.userId};
+            const res2 = await axios.post('http://localhost:4000/api/user/getUserName',{userId: res.data.userId});
+            return {success: true, userId: res.data.userId, userName: res2.data.userName};
         }
     } catch (error) {
         console.log(error);

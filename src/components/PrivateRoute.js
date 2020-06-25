@@ -7,6 +7,7 @@
    /* Track the state of your app instead. Start with a "loading" state */
    const [state, setState] = useState('loading');
    const [userId, setUserID] = useState('');
+   const [userName, setUserName] = useState('');
  
    useEffect(() => {
      (async function() {
@@ -14,8 +15,8 @@
          /* Update effect logic to track correct state */
          const sessionData = await getSession();
          const isUserLogged = sessionData.success;
-         const userID = sessionData.userId._id;
-         setUserID(userID);
+         setUserName(sessionData.userName);
+         setUserID(sessionData.userId._id);
          setState(isUserLogged ? 'loggedin' : 'redirect');
        }
        catch {
@@ -35,7 +36,7 @@
        {...rest}
        /* Decide what component to render based on state */
        render={props => ((state === 'loggedin') ? 
-         <Component {...props} userId={userId}/> : 
+         <Component {...props} userId={userId} userName={userName}/> : 
          <Redirect to={'/login'} />) }
      />
    );

@@ -59,7 +59,7 @@ export default class signup extends Component {
                 <div className={this.state.alert} role="alert">
                     {this.state.message}
                 </div>
-                <Form className="signup-form" onSubmit={this.onSubmit} method="post">
+                <Form className="signup-form shadow p-3 mb-5 rounded" onSubmit={this.onSubmit} method="post">
                     <h1 className="text-center">
                         <span className="font-weight-bold">Sign Up Form</span>
                     </h1>

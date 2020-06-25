@@ -96,12 +96,10 @@ export default class login extends Component {
                 <div className={this.state.alert} role="alert">
                     {this.state.message}
                 </div>
-                <Form className="login-form" onSubmit={this.onSubmit} method="post">
+                <Form className="login-form shadow p-3 mb-5 rounded" onSubmit={this.onSubmit} method="post">
                     <h1 className="text-center">
-                        <span className="font-weight-bold">Login Form</span>
+                        <span className="font-weight-bold">LogIn</span>
                     </h1>
-                    <h2 className="text-center">Welcome {this.state.name}</h2>
-                    <h3>{this.state.email}</h3>
                     <img src={this.state.imageUrl} alt={this.state.name} />
                     <FormGroup>
                         <Label>Email</Label>
